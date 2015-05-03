@@ -10,6 +10,7 @@ options = {}
 accepted_formats = { ".csv" => ",", ".pipe" => "|" }
 record_count = 0
 
+#Help options
 opt_help = OptionParser.new do |opt|
 	opt.banner = "This application loads inventory file."
 	opt.separator  ""
@@ -19,7 +20,7 @@ end
 
 opt_help.parse!
 
-#Initializing the database and getting items and item quantities
+#Initializing the database and getting items
 db = Database.new
 items = db.get_items
 

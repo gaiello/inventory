@@ -15,7 +15,7 @@ end
 
 opt_help.parse!
 
-#Initializing the database and getting items and item quantities
+#Initializing the database and getting items
 db = Database.new
 items = db.get_items
 

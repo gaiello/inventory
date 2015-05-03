@@ -7,7 +7,7 @@ class Database
        @db = Sequel.sqlite('lib/inventory.db')
     end
     
-    #Initializing tables if they dont exist.
+    #Initializing table if they dont exist.
   	def create
     		unless @db.table_exists? :items
   			@db.create_table(:items) do
@@ -39,6 +39,7 @@ class Database
         puts "GETTING ITEMS"
     end
 
+    #Counts of specific formats by artist
     def get_count(items, artist, format)
         begin
             items.filter("format = '#{format.downcase}' and artist LIKE '%#{artist}%'").count.to_i
@@ -47,6 +48,7 @@ class Database
         end
     end
 
+    #The first UID for display
     def get_uid(items, artist, format)
         begin
             items.filter("format = '#{format}' and artist LIKE '%#{artist}%'").first[:uid]
@@ -55,6 +57,7 @@ class Database
         end
     end
 
+    #Display the inventory
     def display(items, arg0, arg1)
         case arg0
         when 'artist', 'title', 'release_year', 'format'
@@ -68,6 +71,7 @@ class Database
         end
     end
 
+    #Each inventory item formatted
     def display_item(item, items, arg0, arg1)
         puts "Artist: #{item[:artist]}"
         puts "Album: #{item[:title]}"
